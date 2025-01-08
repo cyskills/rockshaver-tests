@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('Testes no Backend') {
+        stage('Api') {
             steps {
                 dir('api') {
                     sh 'npm install'
@@ -16,15 +16,17 @@ pipeline {
             }
         }
 
-        stage('Testes no Frontend (Mobile)') {
+        stage('Mobile') {
             steps {
                 dir('mobile') {
-                    sh 'echo teste'
+                    sh 'npm install'
+                    sh 'npx cypress install --force'
+                    sh 'npx cypress run'
                 }
             }
         }
 
-        stage('Testes no Frontend (Web)') {
+        stage('Web') {
             steps {
                 dir('web') {
                     sh 'echo teste'
